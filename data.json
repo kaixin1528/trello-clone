@@ -1,0 +1,96 @@
+[
+  {
+    "boardName": "Kanban Template",
+    "users": ["KH", "MS", "OM", "DJ", "WS"],
+    "visibility": "Private",
+    "menu": {
+      "madeBy": "Kaixin Huang",
+      "description": "Simple board to start on a project."
+    },
+    "lists": [
+      {
+        "name": "Backlog",
+        "cards": [
+          {
+            "title": "Add what you'd like to work on below",
+            "labels": ["Concept"],
+            "description": ""
+          },
+          {
+            "title": "Github jobs challenge",
+            "labels": ["Technical", "Design"],
+            "members": ["MS"],
+            "comments": [
+              {
+                "name": "Mikael Stanley",
+                "description": "Once the ideas is clearly defined, the task can move to #todo stage."
+              },
+              {
+                "name": "Terris Niles",
+                "description": "Sounds cool."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "In Progress",
+        "cards": [
+          {
+            "title": "Move anything 'ready' here",
+            "labels": ["Technical", "Design"],
+            "members": ["MS", "OM"],
+            "description": "Things like  "
+          },
+          {
+            "title": "Backend Challenges",
+            "labels": ["Frontend", "Concept"],
+            "members": ["MS"],
+            "comments": [
+              {
+                "name": "Mikael Stanley",
+                "description": "Once the ideas is clearly defined, the task can move to #todo stage."
+              }
+            ]
+          },
+          {
+            "title": "Read Atomic Habits in the next 30 days",
+            "labels": ["Technical"],
+            "members": ["MS"],
+            "comments": [
+              {
+                "name": "Mikael Stanley",
+                "description": "Once the ideas is clearly defined, the task can move to #todo stage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "In Review",
+        "cards": [
+          {
+            "title": "Add finishing touches for Windbnb solution",
+            "labels": ["Fullstack"],
+            "description": "This is for any last-minute reivews."
+          }
+        ]
+      },
+      {
+        "name": "Completed",
+        "cards": [
+          {
+            "title": "Move anything from doing to done here",
+            "labels": ["Technical", "Concept"],
+            "description": "This is for any last-minute reivews."
+          },
+          {
+            "title": "Move anything that is actually started here",
+            "labels": ["Technical", "Concept"],
+            "description": "This is for any last-minute reivews."
+          }
+        ]
+      }
+    ]
+  }
+]
