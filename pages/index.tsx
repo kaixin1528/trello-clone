@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
+import { url } from "../lib/const";
 // import { connectToDatabase } from "../lib/mongodb";
 
 export type BoardInfo = {
@@ -184,7 +185,7 @@ const Home = ({ boards }: any) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/boards");
+  const res = await fetch(`${url}/api/boards`);
   const boards = await res.json();
 
   // const { db } = await connectToDatabase();

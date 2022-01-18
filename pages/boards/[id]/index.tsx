@@ -23,6 +23,7 @@ import {
   handleEditCardDescription,
   handleAddComment,
   handleAddLabels,
+  url,
 } from "../../../lib/const";
 // import { connectToDatabase } from "../../../lib/mongodb";
 // import { ObjectId } from "mongodb";
@@ -292,7 +293,7 @@ export default Board;
 
 export const getServerSideProps = async ({ params }: any) => {
   const id = params.id;
-  const res = await fetch(`http://localhost:3000/api/boards/${id}`);
+  const res = await fetch(`${url}/api/boards/${id}`);
   const boardInfo = (await res.json())[0];
 
   // const { db } = await connectToDatabase();
