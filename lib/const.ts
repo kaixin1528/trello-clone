@@ -1,13 +1,24 @@
+import { connectToDatabase } from "../lib/mongodb";
+import { ObjectId } from "mongodb";
+
 export const handleAddList = async (listTitle: string, id: string) => {
-  await fetch(`http://localhost:3000/api/boards/${id}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: listTitle,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     title: listTitle,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  await db
+    .collection("boards")
+    .updateOne(
+      { _id: new ObjectId(id) },
+      { $push: { lists: { name: listTitle } } }
+    );
 };
 
 export const handleAddCard = async (
@@ -15,16 +26,24 @@ export const handleAddCard = async (
   cardTitle: string,
   id: string
 ) => {
-  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: title,
-      cardTitle: cardTitle,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     title: title,
+  //     cardTitle: cardTitle,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  await db
+    .collection("boards")
+    .updateOne(
+      { _id: new ObjectId(id), "lists.name": title },
+      { $addToSet: { "lists.$.cards": { title: cardTitle } } }
+    );
 };
 
 export const handleEditDescription = async (
@@ -35,15 +54,25 @@ export const handleEditDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`http://localhost:3000/api/boards/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      description: description,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}`, {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     description: description,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
+    {
+      $set: {
+        menu: { madeBy: "Kaixin Huang", description: description },
+      },
+    }
+  );
   setEditDescription(!editDescription);
 };
 
@@ -53,15 +82,27 @@ export const handleEditVisibility = async (
   setOpenVisibility: Function,
   openVisibility: boolean
 ) => {
-  await fetch(`http://localhost:3000/api/boards/${id}/setting`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      visibility: value,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}/setting`, {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     visibility: value,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  console.log(value);
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
+    {
+      $set: {
+        visibility: value,
+      },
+    }
+  );
+
   setOpenVisibility(!openVisibility);
 };
 
@@ -70,28 +111,45 @@ export const handleRename = async (
   id: string,
   listTitle: string
 ) => {
-  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: title,
-      newTitle: listTitle,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     title: title,
+  //     newTitle: listTitle,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  await db
+    .collection("boards")
+    .updateOne(
+      { _id: new ObjectId(id), "lists.name": title },
+      { $set: { "lists.$.name": listTitle } }
+    );
 };
 
 export const handleDeleteList = async (title: string, id: string) => {
-  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: title,
-    }),
-  });
+  // await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
+  //   method: "DELETE",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     title: title,
+  //   }),
+  // });
+
+  const { db } = await connectToDatabase();
+  await db
+    .collection("boards")
+    .updateOne(
+      { _id: new ObjectId(id) },
+      { $pull: { lists: { name: title } } }
+    );
+
   window.location.reload();
 };
 
@@ -105,20 +163,30 @@ export const handleEditCardDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(
-    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${i}`,
+  // await fetch(
+  //   `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${i}`,
+  //   {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       listIndex: listIndex,
+  //       cardIndex: i,
+  //       cardDescription: cardDescription,
+  //     }),
+  //   }
+  // );
+  const { db } = await connectToDatabase();
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
     {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
+      $set: {
+        [`lists.${listIndex}.cards.${i}.description`]: cardDescription,
       },
-      body: JSON.stringify({
-        listIndex: listIndex,
-        cardIndex: i,
-        cardDescription: cardDescription,
-      }),
     }
   );
+
   setEditDescription(!editDescription);
 };
 
@@ -129,18 +197,31 @@ export const handleAddComment = async (
   id: string,
   comment: string
 ) => {
-  await fetch(
-    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+  // await fetch(
+  //   `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+  //   {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       listIndex: listIndex,
+  //       cardIndex: cardIndex,
+  //       comment: comment,
+  //     }),
+  //   }
+  // );
+
+  const { db } = await connectToDatabase();
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
     {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+      $addToSet: {
+        [`lists.${listIndex}.cards.${cardIndex}.comments`]: {
+          name: "Kaixin Huang",
+          description: comment,
+        },
       },
-      body: JSON.stringify({
-        listIndex: listIndex,
-        cardIndex: cardIndex,
-        comment: comment,
-      }),
     }
   );
 };
@@ -156,18 +237,28 @@ export const handleAddLabels = async (
 ) => {
   if (!currentLabels || !currentLabels.includes(label))
     setLabels([...labels, label]);
-  await fetch(
-    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+  // await fetch(
+  //   `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+  //   {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       listIndex: listIndex,
+  //       cardIndex: cardIndex,
+  //       label: label,
+  //     }),
+  //   }
+  // );
+
+  const { db } = await connectToDatabase();
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
     {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
+      $addToSet: {
+        [`lists.${listIndex}.cards.${cardIndex}.labels`]: label,
       },
-      body: JSON.stringify({
-        listIndex: listIndex,
-        cardIndex: cardIndex,
-        label: label,
-      }),
     }
   );
 };

@@ -2,9 +2,6 @@
 import { ObjectId } from "mongodb";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../../../../lib/mongodb";
-// type Data = {
-//   name: string
-// }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const id: string = req.query.id.toString();
@@ -87,7 +84,6 @@ export const deleteList = async (
   id: string
 ) => {
   const { db } = await connectToDatabase();
-  console.log(req.body.title);
   await db
     .collection("boards")
     .updateOne(

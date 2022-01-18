@@ -1,9 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../lib/mongodb";
-// type Data = {
-//   name: string
-// }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -15,7 +12,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       }
     case "POST":
       try {
-        console.log("hello");
         return addBoard(req, res);
       } catch (error) {
         return res.json({ msg: error });
