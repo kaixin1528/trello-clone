@@ -3,12 +3,12 @@
 
 const dev_url = "http://localhost:3000";
 
-const prod_url = "https://kaixin-trello-clone.netlify.app";
+const prod_url = "https://kaixin-trello-clone.vercel.app";
 
 export const url = process.env.NODE_ENV === "development" ? dev_url : prod_url;
 
 export const handleAddList = async (listTitle: string, id: string) => {
-  await fetch(`/api/boards/${id}`, {
+  await fetch(`${url}/api/boards/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const handleAddCard = async (
   cardTitle: string,
   id: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const handleEditDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`/api/boards/${id}`, {
+  await fetch(`${url}/api/boards/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -88,7 +88,7 @@ export const handleEditVisibility = async (
   setOpenVisibility: Function,
   openVisibility: boolean
 ) => {
-  await fetch(`/api/boards/${id}/setting`, {
+  await fetch(`${url}/api/boards/${id}/setting`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export const handleRename = async (
   id: string,
   listTitle: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -138,7 +138,7 @@ export const handleRename = async (
 };
 
 export const handleDeleteList = async (title: string, id: string) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -169,7 +169,7 @@ export const handleEditCardDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${i}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${i}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -200,7 +200,7 @@ export const handleAddComment = async (
   id: string,
   comment: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export const handleAddLabels = async (
 ) => {
   if (!currentLabels || !currentLabels.includes(label))
     setLabels([...labels, label]);
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
+  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -264,7 +264,7 @@ export const handleAddBoard = async (
   boardTitle: string,
   visibility: string
 ) => {
-  await fetch(`/api/boards`, {
+  await fetch(`${url}/api/boards`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
