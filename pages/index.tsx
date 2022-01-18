@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
-import { url } from "../lib/const";
+import { url, handleAddBoard } from "../lib/const";
 // import { connectToDatabase } from "../lib/mongodb";
 
 export type BoardInfo = {
@@ -13,37 +13,12 @@ export type BoardInfo = {
   menu?: Object;
   lists?: any[];
 };
-console.log(`${process.env}`);
-let { DEV_URL, PROD_URL } = process.env;
-console.log(DEV_URL, PROD_URL);
 
 const Home = ({ boards }: any) => {
   const [add, setAdd] = useState(false);
   const [boardTitle, setBoardTitle] = useState("");
   const [openVisibility, setOpenVisibility] = useState(false);
   const [visibility, setVisibility] = useState("Public");
-
-  const handleAddBoard = async () => {
-    await fetch(`http://localhost:3000/api/boards`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        boardName: boardTitle,
-        users: ["KH"],
-        visibility: visibility,
-      }),
-    });
-    // const board = {
-    //   boardName: boardTitle,
-    //   users: ["KH"],
-    //   visibility: visibility,
-    // };
-
-    // const { db } = await connectToDatabase();
-    // await db.collection("boards").insertOne(board);
-  };
 
   return (
     <main
@@ -107,7 +82,7 @@ const Home = ({ boards }: any) => {
         <section className='absolute inset-0 p-10 bg-gray-900 bg-opacity-50'>
           <form
             className='relative top-12 grid text-sm sm:w-3/5 lg:w-2/5 sm:mx-auto bg-white p-6 gap-5 rounded-lg'
-            onSubmit={handleAddBoard}
+            onSubmit={() => handleAddBoard(boardTitle, visibility)}
           >
             <input
               className='pl-5 py-2 ring-1 ring-gray-300 rounded-lg focus:outline-none'
@@ -188,7 +163,7 @@ const Home = ({ boards }: any) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/boards`);
+  const res = await fetch(`${url}/api/boards`);
   const boards = await res.json();
 
   // const { db } = await connectToDatabase();
