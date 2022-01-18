@@ -21,7 +21,7 @@ const Home = ({ boards }: any) => {
   const [visibility, setVisibility] = useState("Public");
 
   const handleAddBoard = async () => {
-    await fetch("http://localhost:3000/api/boards", {
+    await fetch("/api/boards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
