@@ -24,8 +24,8 @@ import {
   handleAddComment,
   handleAddLabels,
 } from "../../../lib/const";
-import { connectToDatabase } from "../../../lib/mongodb";
-import { ObjectId } from "mongodb";
+// import { connectToDatabase } from "../../../lib/mongodb";
+// import { ObjectId } from "mongodb";
 
 export type BoardInfo = {
   _id: string;
@@ -292,16 +292,16 @@ export default Board;
 
 export const getServerSideProps = async ({ params }: any) => {
   const id = params.id;
-  // const res = await fetch(`http://localhost:3000/api/boards/${id}`);
-  // const boardInfo = (await res.json())[0];
+  const res = await fetch(`http://localhost:3000/api/boards/${id}`);
+  const boardInfo = (await res.json())[0];
 
-  const { db } = await connectToDatabase();
-  const boardInfo = (
-    await db
-      .collection("boards")
-      .find({ _id: new ObjectId(id) })
-      .toArray()
-  )[0];
+  // const { db } = await connectToDatabase();
+  // const boardInfo = (
+  //   await db
+  //     .collection("boards")
+  //     .find({ _id: new ObjectId(id) })
+  //     .toArray()
+  // )[0];
 
   return {
     props: {

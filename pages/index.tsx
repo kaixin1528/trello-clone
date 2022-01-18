@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
-import { connectToDatabase } from "../lib/mongodb";
+// import { connectToDatabase } from "../lib/mongodb";
 
 export type BoardInfo = {
   _id: string;
@@ -20,25 +20,25 @@ const Home = ({ boards }: any) => {
   const [visibility, setVisibility] = useState("Public");
 
   const handleAddBoard = async () => {
-    // await fetch("http://localhost:3000/api/boards", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     boardName: boardTitle,
-    //     users: ["KH"],
-    //     visibility: visibility,
-    //   }),
-    // });
-    const board = {
-      boardName: boardTitle,
-      users: ["KH"],
-      visibility: visibility,
-    };
+    await fetch("http://localhost:3000/api/boards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        boardName: boardTitle,
+        users: ["KH"],
+        visibility: visibility,
+      }),
+    });
+    // const board = {
+    //   boardName: boardTitle,
+    //   users: ["KH"],
+    //   visibility: visibility,
+    // };
 
-    const { db } = await connectToDatabase();
-    await db.collection("boards").insertOne(board);
+    // const { db } = await connectToDatabase();
+    // await db.collection("boards").insertOne(board);
   };
 
   return (
@@ -184,10 +184,11 @@ const Home = ({ boards }: any) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  // const res = await fetch("http://localhost:3000/api/boards");
-  // const boards = await res.json();
-  const { db } = await connectToDatabase();
-  const boards = await db.collection("boards").find({}).toArray();
+  const res = await fetch("http://localhost:3000/api/boards");
+  const boards = await res.json();
+
+  // const { db } = await connectToDatabase();
+  // const boards = await db.collection("boards").find({}).toArray();
 
   return {
     props: { boards },
