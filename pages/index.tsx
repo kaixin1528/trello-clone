@@ -13,6 +13,9 @@ export type BoardInfo = {
   menu?: Object;
   lists?: any[];
 };
+console.log(`${process.env}`);
+let { DEV_URL, PROD_URL } = process.env;
+console.log(DEV_URL, PROD_URL);
 
 const Home = ({ boards }: any) => {
   const [add, setAdd] = useState(false);
@@ -21,7 +24,7 @@ const Home = ({ boards }: any) => {
   const [visibility, setVisibility] = useState("Public");
 
   const handleAddBoard = async () => {
-    await fetch("/api/boards", {
+    await fetch(`http://localhost:3000/api/boards`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -185,7 +188,7 @@ const Home = ({ boards }: any) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`${url}/api/boards`);
+  const res = await fetch(`http://localhost:3000/api/boards`);
   const boards = await res.json();
 
   // const { db } = await connectToDatabase();

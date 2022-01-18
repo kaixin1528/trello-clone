@@ -7,6 +7,7 @@ export const url =
     : process.env.PROD_URL;
 
 export const handleAddList = async (listTitle: string, id: string) => {
+  console.log(`http://localhost:3000/api/boards/${id}`);
   await fetch(`/api/boards/${id}`, {
     method: "POST",
     headers: {
@@ -31,7 +32,7 @@ export const handleAddCard = async (
   cardTitle: string,
   id: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +60,7 @@ export const handleEditDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`/api/boards/${id}`, {
+  await fetch(`http://localhost:3000/api/boards/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -87,7 +88,7 @@ export const handleEditVisibility = async (
   setOpenVisibility: Function,
   openVisibility: boolean
 ) => {
-  await fetch(`/api/boards/${id}/setting`, {
+  await fetch(`http://localhost:3000/api/boards/${id}/setting`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export const handleRename = async (
   id: string,
   listTitle: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -137,7 +138,7 @@ export const handleRename = async (
 };
 
 export const handleDeleteList = async (title: string, id: string) => {
-  await fetch(`/api/boards/${id}/lists/${title}`, {
+  await fetch(`http://localhost:3000/api/boards/${id}/lists/${title}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -168,17 +169,20 @@ export const handleEditCardDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${i}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      listIndex: listIndex,
-      cardIndex: i,
-      cardDescription: cardDescription,
-    }),
-  });
+  await fetch(
+    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${i}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        listIndex: listIndex,
+        cardIndex: i,
+        cardDescription: cardDescription,
+      }),
+    }
+  );
   // const { db } = await connectToDatabase();
   // await db.collection("boards").updateOne(
   //   { _id: new ObjectId(id) },
@@ -199,17 +203,20 @@ export const handleAddComment = async (
   id: string,
   comment: string
 ) => {
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      listIndex: listIndex,
-      cardIndex: cardIndex,
-      comment: comment,
-    }),
-  });
+  await fetch(
+    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        listIndex: listIndex,
+        cardIndex: cardIndex,
+        comment: comment,
+      }),
+    }
+  );
 
   // const { db } = await connectToDatabase();
   // await db.collection("boards").updateOne(
@@ -236,17 +243,20 @@ export const handleAddLabels = async (
 ) => {
   if (!currentLabels || !currentLabels.includes(label))
     setLabels([...labels, label]);
-  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      listIndex: listIndex,
-      cardIndex: cardIndex,
-      label: label,
-    }),
-  });
+  await fetch(
+    `http://localhost:3000/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        listIndex: listIndex,
+        cardIndex: cardIndex,
+        label: label,
+      }),
+    }
+  );
 
   // const { db } = await connectToDatabase();
   // await db.collection("boards").updateOne(
