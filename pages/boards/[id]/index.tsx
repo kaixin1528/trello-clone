@@ -179,7 +179,7 @@ const Board = ({ boardInfo, id }: { boardInfo: any; id: string }) => {
                           })}
                         </ul>
                         {openCard === card.title && (
-                          <section className='absolute inset-0 z-10 py-16 bg-gray-600 bg-opacity-50'>
+                          <div className='absolute inset-0 z-10 py-16 bg-gray-600 bg-opacity-50'>
                             <section className='relative grid grid-cols-7 pt-10 py-6 px-10 gap-5 w-full sm:w-4/5 md:w-1/2 xl:w-1/3 mx-auto text-list text-left items-start bg-card rounded-lg'>
                               <button
                                 className='absolute right-4 top-1 z-20 text-list font-medium'
@@ -247,7 +247,7 @@ const Board = ({ boardInfo, id }: { boardInfo: any; id: string }) => {
                                 id={id}
                               />
                             </section>
-                          </section>
+                          </div>
                         )}
                       </li>
                     );

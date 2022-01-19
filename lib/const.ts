@@ -1,5 +1,4 @@
 const dev_url = "http://localhost:3000";
-
 const prod_url = "https://kaixin-trello-clone.netlify.app";
 
 export const url = process.env.NODE_ENV === "development" ? dev_url : prod_url;

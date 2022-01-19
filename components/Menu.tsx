@@ -23,9 +23,9 @@ const Menu = ({
       <section className='grid p-2 gap-2 text-sm text-card'>
         <h5 className='font-bold '>Made by</h5>
         <section className='grid grid-flow-col auto-cols-max gap-3 items-center'>
-          <section className='p-2 font-bold text-white ring-1 ring-gray-200 bg-gray-200 rounded-lg'>
+          <div className='p-2 font-bold text-white ring-1 ring-gray-200 bg-gray-200 rounded-lg'>
             {boardInfo.users[0]}
-          </section>
+          </div>
           <h5 className='font-medium'>{boardInfo.menu?.madeBy}</h5>
         </section>
       </section>
