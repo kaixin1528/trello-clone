@@ -1,14 +1,11 @@
-// import { connectToDatabase } from "../lib/mongodb";
-// import { ObjectId } from "mongodb";
-
 const dev_url = "http://localhost:3000";
 
-const prod_url = "https://kaixin-trello-clone.vercel.app";
+const prod_url = "https://kaixin-trello-clone.netlify.app";
 
 export const url = process.env.NODE_ENV === "development" ? dev_url : prod_url;
 
 export const handleAddList = async (listTitle: string, id: string) => {
-  await fetch(`${url}/api/boards/${id}`, {
+  await fetch(`/api/boards/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,14 +14,6 @@ export const handleAddList = async (listTitle: string, id: string) => {
       title: listTitle,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db
-  //   .collection("boards")
-  //   .updateOne(
-  //     { _id: new ObjectId(id) },
-  //     { $push: { lists: { name: listTitle } } }
-  //   );
 };
 
 export const handleAddCard = async (
@@ -32,7 +21,7 @@ export const handleAddCard = async (
   cardTitle: string,
   id: string
 ) => {
-  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
+  await fetch(`/api/boards/${id}/lists/${title}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,14 +31,6 @@ export const handleAddCard = async (
       cardTitle: cardTitle,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db
-  //   .collection("boards")
-  //   .updateOne(
-  //     { _id: new ObjectId(id), "lists.name": title },
-  //     { $addToSet: { "lists.$.cards": { title: cardTitle } } }
-  //   );
 };
 
 export const handleEditDescription = async (
@@ -60,7 +41,7 @@ export const handleEditDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`${url}/api/boards/${id}`, {
+  await fetch(`/api/boards/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -69,16 +50,6 @@ export const handleEditDescription = async (
       description: description,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db.collection("boards").updateOne(
-  //   { _id: new ObjectId(id) },
-  //   {
-  //     $set: {
-  //       menu: { madeBy: "Kaixin Huang", description: description },
-  //     },
-  //   }
-  // );
   setEditDescription(!editDescription);
 };
 
@@ -88,7 +59,7 @@ export const handleEditVisibility = async (
   setOpenVisibility: Function,
   openVisibility: boolean
 ) => {
-  await fetch(`${url}/api/boards/${id}/setting`, {
+  await fetch(`/api/boards/${id}/setting`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -98,17 +69,6 @@ export const handleEditVisibility = async (
     }),
   });
 
-  // const { db } = await connectToDatabase();
-  // console.log(value);
-  // await db.collection("boards").updateOne(
-  //   { _id: new ObjectId(id) },
-  //   {
-  //     $set: {
-  //       visibility: value,
-  //     },
-  //   }
-  // );
-
   setOpenVisibility(!openVisibility);
 };
 
@@ -117,7 +77,7 @@ export const handleRename = async (
   id: string,
   listTitle: string
 ) => {
-  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
+  await fetch(`/api/boards/${id}/lists/${title}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -127,18 +87,10 @@ export const handleRename = async (
       newTitle: listTitle,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db
-  //   .collection("boards")
-  //   .updateOne(
-  //     { _id: new ObjectId(id), "lists.name": title },
-  //     { $set: { "lists.$.name": listTitle } }
-  //   );
 };
 
 export const handleDeleteList = async (title: string, id: string) => {
-  await fetch(`${url}/api/boards/${id}/lists/${title}`, {
+  await fetch(`/api/boards/${id}/lists/${title}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -147,14 +99,6 @@ export const handleDeleteList = async (title: string, id: string) => {
       title: title,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db
-  //   .collection("boards")
-  //   .updateOne(
-  //     { _id: new ObjectId(id) },
-  //     { $pull: { lists: { name: title } } }
-  //   );
 
   window.location.reload();
 };
@@ -169,7 +113,7 @@ export const handleEditCardDescription = async (
   editDescription: boolean
 ) => {
   e.preventDefault();
-  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${i}`, {
+  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${i}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -180,15 +124,6 @@ export const handleEditCardDescription = async (
       cardDescription: cardDescription,
     }),
   });
-  // const { db } = await connectToDatabase();
-  // await db.collection("boards").updateOne(
-  //   { _id: new ObjectId(id) },
-  //   {
-  //     $set: {
-  //       [`lists.${listIndex}.cards.${i}.description`]: cardDescription,
-  //     },
-  //   }
-  // );
 
   setEditDescription(!editDescription);
 };
@@ -200,7 +135,7 @@ export const handleAddComment = async (
   id: string,
   comment: string
 ) => {
-  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
+  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -211,19 +146,6 @@ export const handleAddComment = async (
       comment: comment,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db.collection("boards").updateOne(
-  //   { _id: new ObjectId(id) },
-  //   {
-  //     $addToSet: {
-  //       [`lists.${listIndex}.cards.${cardIndex}.comments`]: {
-  //         name: "Kaixin Huang",
-  //         description: comment,
-  //       },
-  //     },
-  //   }
-  // );
 };
 
 export const handleAddLabels = async (
@@ -237,7 +159,7 @@ export const handleAddLabels = async (
 ) => {
   if (!currentLabels || !currentLabels.includes(label))
     setLabels([...labels, label]);
-  await fetch(`${url}/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
+  await fetch(`/api/boards/${id}/lists/${listIndex}/cards/${cardIndex}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -248,23 +170,13 @@ export const handleAddLabels = async (
       label: label,
     }),
   });
-
-  // const { db } = await connectToDatabase();
-  // await db.collection("boards").updateOne(
-  //   { _id: new ObjectId(id) },
-  //   {
-  //     $addToSet: {
-  //       [`lists.${listIndex}.cards.${cardIndex}.labels`]: label,
-  //     },
-  //   }
-  // );
 };
 
 export const handleAddBoard = async (
   boardTitle: string,
   visibility: string
 ) => {
-  await fetch(`${url}/api/boards`, {
+  await fetch(`/api/boards`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -275,12 +187,4 @@ export const handleAddBoard = async (
       visibility: visibility,
     }),
   });
-  // const board = {
-  //   boardName: boardTitle,
-  //   users: ["KH"],
-  //   visibility: visibility,
-  // };
-
-  // const { db } = await connectToDatabase();
-  // await db.collection("boards").insertOne(board);
 };

@@ -25,8 +25,6 @@ import {
   handleAddLabels,
   url,
 } from "../../../lib/const";
-// import { connectToDatabase } from "../../../lib/mongodb";
-// import { ObjectId } from "mongodb";
 
 export type BoardInfo = {
   _id: string;
@@ -295,14 +293,6 @@ export const getServerSideProps = async ({ params }: any) => {
   const id = params.id;
   const res = await fetch(`${url}/api/boards/${id}`);
   const boardInfo = (await res.json())[0];
-
-  // const { db } = await connectToDatabase();
-  // const boardInfo = (
-  //   await db
-  //     .collection("boards")
-  //     .find({ _id: new ObjectId(id) })
-  //     .toArray()
-  // )[0];
 
   return {
     props: {
