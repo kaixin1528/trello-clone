@@ -1,34 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trello Clone Website
 
-## Getting Started
+## Table of contents
 
-First, run the development server:
+- [Overview](#overview)
+  - [Getting Started](#getting-started)
+  - [Project Summary](#project-summary)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
+
+## Overview
+
+### Getting Started 
+
+First, install all the necessary dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
+yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Project Summary
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Trello Clone is a responsive CRUD website in which one can assign tasks to a board. On this website, 
+one can add a board and within the board add lists and cards. Inside each card, one can add labels, 
+edit the card's description, and add comments. 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## My process
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Built with
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Semantic HTML5 markup
+- CSS custom properties
+- CSS Grid
+- Typescript
+- Mobile-first workflow
+- [Next](https://nextjs.org/) 
+- [Tailwind](https://tailwindcss.com/) 
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### What I learned
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This was my first time working with MongoDB, so I spent a good portion of time reading up MongoDB documentation to 
+familiarize myself with the syntax. The code snippet below is part of execution of a PUT request. Here, I first 
+connected to my MongoDB database that I set up. Then, I updated a particular card's description with the command $set
+after iterating through the list of cards with the correct list index and card index in order to find the matching card. 
+
+```js
+export const editCardDescription = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  id: string
+) => {
+  const { db } = await connectToDatabase();
+  await db.collection("boards").updateOne(
+    { _id: new ObjectId(id) },
+    {
+      $set: {
+        [`lists.${req.body.listIndex}.cards.${req.body.cardIndex}.description`]:
+          req.body.cardDescription,
+      },
+    }
+  );
+  return res
+    .status(200)
+    .json({ msg: "Successfully edited the card's description." });
+};
+```
+
+### Continued development
+
+For further development, I'd have to figure out the failed deployment to Netlify. As of now, 
+one has to install all the dependencies and open the local host in order to view the project. 
+
+In addition, I would like to work with react-beautiful-grid to implement the drag-and-drop effect
+that Trello is known for. 
+  
+
+## Author
+
+- Portfolio Website - [Kaixin Huang](https://www.kaixin-portfolio.netlify.app)
