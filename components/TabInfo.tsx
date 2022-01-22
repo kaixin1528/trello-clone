@@ -1,3 +1,5 @@
+import { BoardInfo } from "../lib/const";
+
 const TabInfo = ({
   boardInfo,
   onOpenVisibility,
@@ -5,7 +7,14 @@ const TabInfo = ({
   onEditVisibility,
   onShowMenu,
   id,
-}: any) => {
+}: {
+  boardInfo: BoardInfo;
+  onOpenVisibility: React.MouseEventHandler<HTMLButtonElement>;
+  openVisibility: boolean;
+  onEditVisibility: Function;
+  onShowMenu: React.MouseEventHandler<HTMLButtonElement>;
+  id: number;
+}) => {
   return (
     <section className='grid grid-cols-3 relative text-sm items-center'>
       <section className='grid gap-3 col-span-2'>

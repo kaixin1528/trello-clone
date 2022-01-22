@@ -2,22 +2,13 @@ import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
-import { url, handleAddBoard } from "../lib/const";
+import { url, handleAddBoard, BoardInfo } from "../lib/const";
 
-export type BoardInfo = {
-  _id: string;
-  boardName: string;
-  users: string[];
-  visibility: string;
-  menu?: Object;
-  lists?: any[];
-};
-
-const Home = ({ boards }: any) => {
-  const [add, setAdd] = useState(false);
-  const [boardTitle, setBoardTitle] = useState("");
-  const [openVisibility, setOpenVisibility] = useState(false);
-  const [visibility, setVisibility] = useState("Public");
+const Home = ({ boards }: { boards: BoardInfo[] }) => {
+  const [add, setAdd] = useState<boolean>(false);
+  const [boardTitle, setBoardTitle] = useState<string>("");
+  const [openVisibility, setOpenVisibility] = useState<boolean>(false);
+  const [visibility, setVisibility] = useState<string>("Public");
 
   return (
     <main className='grid relative min-h-screen items-start sm:pb-80 font-roboto'>

@@ -5,7 +5,14 @@ const Comment = ({
   cardIndex,
   onComment,
   id,
-}: any) => {
+}: {
+  comment: string;
+  handleAddComment: Function;
+  listIndex: number;
+  cardIndex: number;
+  onComment: Function;
+  id: number;
+}) => {
   return (
     <form
       className={`grid gap-2 text-list text-sm ${

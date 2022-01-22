@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/trello.svg";
+import { BoardInfo } from "../lib/const";
 
-const BoardHeader = ({ boardInfo }: any) => {
+const BoardHeader = ({ boardInfo }: { boardInfo: BoardInfo }) => {
   return (
     <header className='grid sm:grid-cols-2 p-5 gap-3 border-b-2 border-gray-200 bg-white'>
       <Link href='/' passHref>

@@ -1,5 +1,6 @@
 import dots from "../public/dots.png";
 import Image from "next/image";
+import { List } from "../lib/const";
 
 const Rename = ({
   list,
@@ -12,7 +13,18 @@ const Rename = ({
   handleRename,
   id,
   listTitle,
-}: any) => {
+}: {
+  list: List;
+  onRename: Function;
+  onListSetting: Function;
+  handleDeleteList: Function;
+  rename: string;
+  onListTitle: Function;
+  listSetting: string;
+  handleRename: Function;
+  id: number;
+  listTitle: string;
+}) => {
   return (
     <section className='grid grid-cols-2'>
       <form

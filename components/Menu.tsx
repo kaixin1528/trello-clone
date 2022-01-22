@@ -1,3 +1,6 @@
+import React from "react";
+import { BoardInfo } from "../lib/const";
+
 const Menu = ({
   boardInfo,
   onShowMenu,
@@ -6,7 +9,15 @@ const Menu = ({
   description,
   editDescription,
   handleEditDescription,
-}: any) => {
+}: {
+  boardInfo: BoardInfo;
+  onShowMenu: React.MouseEventHandler<HTMLButtonElement>;
+  onEditDescription: React.MouseEventHandler<HTMLButtonElement>;
+  onDescription: Function;
+  description: string;
+  editDescription: boolean;
+  handleEditDescription: React.FormEventHandler<HTMLFormElement>;
+}) => {
   return (
     <aside className='absolute right-0 top-20 pb-[26rem] pr-20 p-4 grid gap-3 shadow-md bg-white z-10'>
       <section className='grid grid-cols-2 text-list'>

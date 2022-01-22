@@ -3,7 +3,12 @@ const AddCardForm = ({
   cardTitle,
   onAddCard,
   onCardTitle,
-}: any) => {
+}: {
+  handleAddCard: React.FormEventHandler<HTMLFormElement>;
+  cardTitle: string;
+  onAddCard: Function;
+  onCardTitle: Function;
+}) => {
   return (
     <form
       className='grid p-4 pl-6 pr-16 gap-4 ring-1 ring-gray-100 bg-white rounded-lg'

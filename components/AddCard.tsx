@@ -1,4 +1,14 @@
-const AddCard = ({ list, listSetting, onAddCard }: any) => {
+import { List } from "../lib/const";
+
+const AddCard = ({
+  list,
+  listSetting,
+  onAddCard,
+}: {
+  list: List;
+  listSetting: string;
+  onAddCard: Function;
+}) => {
   return (
     <li
       key={list.name}

@@ -4,7 +4,13 @@ const AddListForm = ({
   onListTitle,
   onAddList,
   addList,
-}: any) => {
+}: {
+  handleAddList: React.FormEventHandler<HTMLFormElement>;
+  listTitle: string;
+  onListTitle: Function;
+  onAddList: Function;
+  addList: boolean;
+}) => {
   return (
     <form
       className='grid p-4 pl-6 pr-20 gap-4 ring-1 ring-blue-300 bg-white rounded-lg'

@@ -187,3 +187,36 @@ export const handleAddBoard = async (
     }),
   });
 };
+
+export type BoardInfo = {
+  _id: any;
+  boardName: string;
+  users: string[];
+  visibility: string;
+  menu?: {
+    madeBy: string;
+    description: string;
+  };
+  lists?: any[];
+};
+export type List = {
+  name: string;
+  cards: any[];
+};
+
+export type Card = {
+  title: string;
+  description: string;
+  labels?: string[];
+  members?: string[];
+  comments?: any[];
+};
+
+export interface Params {
+  id: string;
+}
+
+export interface Comment {
+  name: string;
+  description: string;
+}

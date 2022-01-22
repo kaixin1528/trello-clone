@@ -1,4 +1,12 @@
-const ListLabels = ({ labels, textColor, backgroundColor }: any) => {
+const ListLabels = ({
+  labels,
+  textColor,
+  backgroundColor,
+}: {
+  labels: string[];
+  textColor: any;
+  backgroundColor: any;
+}) => {
   return (
     <ul className='grid grid-cols-4 text-xs gap-3 rounded-lg'>
       {labels?.map((label: string, index: number) => {

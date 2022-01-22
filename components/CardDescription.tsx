@@ -1,3 +1,5 @@
+import { Card } from "../lib/const";
+
 const CardDescription = ({
   handleEditCardDescription,
   onEditDescription,
@@ -8,7 +10,17 @@ const CardDescription = ({
   card,
   cardDescription,
   id,
-}: any) => {
+}: {
+  handleEditCardDescription: Function;
+  onEditDescription: Function;
+  onCardDescription: Function;
+  editDescription: boolean;
+  listIndex: number;
+  cardIndex: number;
+  card: Card;
+  cardDescription: string;
+  id: number;
+}) => {
   return (
     <form
       className='grid gap-3'

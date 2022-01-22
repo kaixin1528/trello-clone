@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import AddList from "../../../components/AddList";
 import AddListForm from "../../../components/AddListForm";
 import AddCard from "../../../components/AddCard";
@@ -24,45 +24,30 @@ import {
   handleAddComment,
   handleAddLabels,
   url,
+  BoardInfo,
+  List,
+  Card,
+  Params,
 } from "../../../lib/const";
 
-export type BoardInfo = {
-  _id: string;
-  boardName: string;
-  users: string[];
-  visibility: string;
-  menu?: Object;
-  lists?: any[];
-};
-export type List = {
-  name: string;
-  cards: any[];
-};
-
-export type Card = {
-  title: string;
-  description: string;
-  labels?: string[];
-  members?: string[];
-  comments?: any[];
-};
-
-const Board = ({ boardInfo, id }: { boardInfo: any; id: string }) => {
-  const [addList, setAddList] = useState(false);
-  const [listTitle, setListTitle] = useState("");
-  const [addCard, setAddCard] = useState("");
-  const [cardTitle, setCardTitle] = useState("");
-  const [openVisibility, setOpenVisibility] = useState(false);
-  const [listSetting, setListSetting] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
-  const [editDescription, setEditDescription] = useState(false);
-  const [description, setDescription] = useState(boardInfo.menu?.description);
-  const [rename, setRename] = useState("");
-  const [openCard, setOpenCard] = useState("");
-  const [comment, setComment] = useState("");
-  const [openLabel, setOpenLabel] = useState(false);
+const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
+  const [addList, setAddList] = useState<boolean>(false);
+  const [listTitle, setListTitle] = useState<string>("");
+  const [addCard, setAddCard] = useState<string>("");
+  const [cardTitle, setCardTitle] = useState<string>("");
+  const [openVisibility, setOpenVisibility] = useState<boolean>(false);
+  const [listSetting, setListSetting] = useState<string>("");
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [editDescription, setEditDescription] = useState<boolean>(false);
+  const [description, setDescription] = useState<string>(
+    boardInfo.menu ? boardInfo.menu.description : ""
+  );
+  const [rename, setRename] = useState<string>("");
+  const [openCard, setOpenCard] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
+  const [openLabel, setOpenLabel] = useState<boolean>(false);
   const [labels, setLabels] = useState<Array<string>>([]);
-  const [cardDescription, setCardDescription] = useState("");
+  const [cardDescription, setCardDescription] = useState<string>("");
 
   const textColor: any = {
     Concept: "text-[#9b51e0]",
@@ -113,7 +98,7 @@ const Board = ({ boardInfo, id }: { boardInfo: any; id: string }) => {
             onDescription={setDescription}
             description={description}
             editDescription={editDescription}
-            handleEditDescription={(e: any) =>
+            handleEditDescription={(e: React.FormEvent<HTMLFormElement>) =>
               handleEditDescription(
                 e,
                 id,
@@ -289,7 +274,7 @@ const Board = ({ boardInfo, id }: { boardInfo: any; id: string }) => {
 
 export default Board;
 
-export const getServerSideProps = async ({ params }: any) => {
+export const getServerSideProps = async ({ params }: { params: Params }) => {
   const id = params.id;
   const res = await fetch(`${url}/api/boards/${id}`);
   const boardInfo = (await res.json())[0];

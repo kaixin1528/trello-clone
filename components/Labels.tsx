@@ -1,3 +1,5 @@
+import { Card } from "../lib/const";
+
 const Labels = ({
   onOpenLabel,
   openLabel,
@@ -10,7 +12,19 @@ const Labels = ({
   setLabels,
   labels,
   id,
-}: any) => {
+}: {
+  onOpenLabel: React.MouseEventHandler<HTMLButtonElement>;
+  openLabel: boolean;
+  textColor: any;
+  backgroundColor: any;
+  handleAddLabels: Function;
+  card: Card;
+  listIndex: number;
+  cardIndex: number;
+  setLabels: Function;
+  labels: string[];
+  id: number;
+}) => {
   return (
     <section className='grid sm:col-span-2 gap-5 text-xs'>
       <button
