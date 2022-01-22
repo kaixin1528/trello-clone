@@ -49,6 +49,7 @@ edit the card's description, and add comments.
 - CSS custom properties
 - CSS Grid
 - Typescript
+- MongoDB
 - Mobile-first workflow
 - [Next](https://nextjs.org/) 
 - [Tailwind](https://tailwindcss.com/) 
