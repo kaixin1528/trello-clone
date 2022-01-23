@@ -95,4 +95,4 @@ that Trello is known for.
 
 ## Author
 
-- Portfolio Website - [Kaixin Huang](https://www.kaixin-portfolio.netlify.app)
+- Portfolio Website - [Kaixin Huang](https://kaixin-portfolio.netlify.app)
