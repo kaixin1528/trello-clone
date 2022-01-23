@@ -49,10 +49,10 @@ edit the card's description, and add comments.
 - CSS custom properties
 - CSS Grid
 - Typescript
+- Next
+- Tailwind
 - MongoDB
 - Mobile-first workflow
-- [Next](https://nextjs.org/) 
-- [Tailwind](https://tailwindcss.com/) 
 
 
 ### What I learned
