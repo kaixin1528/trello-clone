@@ -36,7 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Project Summary
 
 Trello Clone is a responsive CRUD website in which one can assign tasks to a board. On this website, 
-one can add a board and within the board add lists and cards. Inside each card, one can add labels, 
+one can add a new board and within the board add new lists and cards. Inside each card, one can add labels, 
 edit the card's description, and add comments. 
 
 
@@ -49,9 +49,10 @@ edit the card's description, and add comments.
 - CSS custom properties
 - CSS Grid
 - Typescript
+- Next
+- Tailwind
+- MongoDB
 - Mobile-first workflow
-- [Next](https://nextjs.org/) 
-- [Tailwind](https://tailwindcss.com/) 
 
 
 ### What I learned
@@ -94,4 +95,4 @@ that Trello is known for.
 
 ## Author
 
-- Portfolio Website - [Kaixin Huang](https://www.kaixin-portfolio.netlify.app)
+- Portfolio Website - [Kaixin Huang](https://kaixin-portfolio.netlify.app)
