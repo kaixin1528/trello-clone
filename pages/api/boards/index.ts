@@ -5,7 +5,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "GET":
       try {
-        return getBoards(req, res);
+        return getBoards(res);
       } catch (error) {
         return res.json({ msg: error });
       }
@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export const getBoards = async (req: NextApiRequest, res: NextApiResponse) => {
+export const getBoards = async (res: NextApiResponse) => {
   const { db } = await connectToDatabase();
   const boards = await db.collection("boards").find({}).toArray();
   return res.status(200).json(boards);

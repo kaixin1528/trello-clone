@@ -7,7 +7,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "GET":
       try {
-        return getBoardInfo(req, res, id);
+        return getBoardInfo(res, id);
       } catch (error) {
         return res.json({ msg: error });
       }
@@ -34,11 +34,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export const getBoardInfo = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  id: string
-) => {
+export const getBoardInfo = async (res: NextApiResponse, id: string) => {
   const { db } = await connectToDatabase();
   const boardInfo = await db
     .collection("boards")
