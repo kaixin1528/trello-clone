@@ -34,12 +34,12 @@ const Home = ({ boards }: { boards: BoardInfo[] }) => {
             return (
               <Link key={board._id} href={`/boards/${board._id}`} passHref>
                 <li className='grid p-3 gap-3 sm:gap-5 snap-center cursor-pointer bg-white border-2 border-gray-50 rounded-lg'>
-                  <section className='h-40 w-full bg-gradient-to-b from-cyan-800 to-orange-400'>
+                  <article className='h-40 w-full bg-gradient-to-b from-cyan-800 to-orange-400'>
                     <h4 className='text-lg text-white w-4/5 mx-auto pt-5 font-medium'>
                       {board.boardName}
                     </h4>
-                  </section>
-                  <section className='grid grid-cols-2 md:grid-cols-5 gap-5 items-center'>
+                  </article>
+                  <article className='grid grid-cols-2 md:grid-cols-5 gap-5 items-center'>
                     <ul className='grid grid-cols-3 md:col-span-3 gap-2 text-xs text-white text-center items-center'>
                       {board.users.map((user: string, i: number) => {
                         if (i >= 3) return;
@@ -58,7 +58,7 @@ const Home = ({ boards }: { boards: BoardInfo[] }) => {
                         + {board.users.length - 3} others
                       </h5>
                     )}
-                  </section>
+                  </article>
                 </li>
               </Link>
             );
@@ -91,13 +91,13 @@ const Home = ({ boards }: { boards: BoardInfo[] }) => {
               {visibility}
             </button>
             {openVisibility && (
-              <section className='grid p-5 gap-5 z-10 text-list shadow-lg justify-self-start bg-white rounded-lg'>
-                <section className='grid'>
+              <article className='grid p-5 gap-5 z-10 text-list shadow-lg justify-self-start bg-white rounded-lg'>
+                <article className='grid'>
                   <h5 className='text-[0.85rem]'>Visibility</h5>
                   <p className='font-light text-xs text-black text-opacity-50'>
                     Choose who can see this board.
                   </p>
-                </section>
+                </article>
                 <button
                   id='Public'
                   className='grid p-3 text-left hover:bg-gray-100 rounded-lg'
@@ -124,7 +124,7 @@ const Home = ({ boards }: { boards: BoardInfo[] }) => {
                     Only board members can see this.
                   </p>
                 </button>
-              </section>
+              </article>
             )}
             <footer className='grid grid-cols-2 justify-self-end'>
               <button

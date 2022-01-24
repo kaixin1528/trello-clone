@@ -39,7 +39,7 @@ const Rename = ({
           className='w-36 text-base text-list font-medium placeholder:text-list focus:outline-none bg-transparent'
         />
         {rename === list.name && (
-          <section className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
+          <footer className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
             <button
               type='submit'
               className='px-3 py-1 text-white justify-self-start bg-save rounded-lg'
@@ -53,7 +53,7 @@ const Rename = ({
             >
               Cancel
             </button>
-          </section>
+          </footer>
         )}
       </form>
       <button

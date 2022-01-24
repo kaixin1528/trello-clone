@@ -88,7 +88,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
           openVisibility={openVisibility}
           onEditVisibility={handleEditVisibility}
           onShowMenu={() => setShowMenu(!showMenu)}
-          id={id}
+          id={Number(id)}
         />
         {showMenu && (
           <Menu
@@ -129,7 +129,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                   onListTitle={setListTitle}
                   listSetting={listSetting}
                   handleRename={handleRename}
-                  id={id}
+                  id={Number(id)}
                   listTitle={listTitle}
                 />
                 <ul
@@ -164,8 +164,8 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                           })}
                         </ul>
                         {openCard === card.title && (
-                          <div className='absolute inset-0 z-10 py-16 bg-gray-600 bg-opacity-50'>
-                            <section className='relative grid grid-cols-7 pt-10 py-6 px-10 gap-5 w-full sm:w-4/5 md:w-1/2 xl:w-1/3 mx-auto text-list text-left items-start bg-card rounded-lg'>
+                          <section className='absolute inset-0 z-10 py-16 bg-gray-600 bg-opacity-50'>
+                            <article className='relative grid grid-cols-7 pt-10 py-6 px-10 gap-5 w-full sm:w-4/5 md:w-1/2 xl:w-1/3 mx-auto text-list text-left items-start bg-card rounded-lg'>
                               <button
                                 className='absolute right-4 top-1 z-20 text-list font-medium'
                                 onClick={() => {
@@ -179,7 +179,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                                 x
                               </button>
                               <section className='grid col-span-7 sm:col-span-5 gap-6'>
-                                <section className='grid'>
+                                <article className='grid'>
                                   <h3 className='text-lg font-medium'>
                                     {card.title}
                                   </h3>
@@ -189,7 +189,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                                       {list.name}
                                     </span>
                                   </p>
-                                </section>
+                                </article>
                                 <ListLabels
                                   labels={labels}
                                   textColor={textColor}
@@ -206,7 +206,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                                   cardIndex={cardIndex}
                                   card={card}
                                   cardDescription={cardDescription}
-                                  id={id}
+                                  id={Number(id)}
                                 />
                                 <AddComment
                                   comment={comment}
@@ -214,7 +214,7 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                                   listIndex={listIndex}
                                   cardIndex={cardIndex}
                                   onComment={setComment}
-                                  id={id}
+                                  id={Number(id)}
                                 />
                                 <Comments card={card} />
                               </section>
@@ -229,10 +229,10 @@ const Board = ({ boardInfo, id }: { boardInfo: BoardInfo; id: string }) => {
                                 cardIndex={cardIndex}
                                 setLabels={setLabels}
                                 labels={labels}
-                                id={id}
+                                id={Number(id)}
                               />
-                            </section>
-                          </div>
+                            </article>
+                          </section>
                         )}
                       </li>
                     );

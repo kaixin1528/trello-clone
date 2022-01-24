@@ -7,14 +7,14 @@ const BoardHeader = ({ boardInfo }: { boardInfo: BoardInfo }) => {
   return (
     <header className='grid sm:grid-cols-2 p-5 gap-3 border-b-2 border-gray-200 bg-white'>
       <Link href='/' passHref>
-        <section className='grid grid-flow-col auto-cols-max cursor-pointer gap-2 items-center'>
-          <section className='h-7 w-7'>
+        <article className='grid grid-flow-col auto-cols-max cursor-pointer gap-2 items-center'>
+          <div className='h-7 w-7'>
             <Image src={logo} alt='trello'></Image>
-          </section>
+          </div>
           <h2 className='text-xl text-list font-bold'>Trello</h2>
-        </section>
+        </article>
       </Link>
-      <section className='hidden sm:grid sm:grid-cols-5 justify-self-end items-center gap-5'>
+      <article className='hidden sm:grid sm:grid-cols-5 justify-self-end items-center gap-5'>
         <h3 className='text-lg text-list sm:col-span-3 font-medium'>
           {boardInfo.boardName}
         </h3>
@@ -26,7 +26,7 @@ const BoardHeader = ({ boardInfo }: { boardInfo: BoardInfo }) => {
             All Boards
           </button>
         </Link>
-      </section>
+      </article>
     </header>
   );
 };

@@ -22,7 +22,7 @@ const AddCardForm = ({
         className='text-base text-card placeholder:text-black placeholder:text-opacity-30 focus:outline-none'
       />
 
-      <section className='grid grid-cols-2 text-xs justify-self-start'>
+      <footer className='grid grid-cols-2 text-xs justify-self-start'>
         <button
           type='submit'
           className='px-3 py-1 text-white justify-self-start bg-save rounded-lg'
@@ -39,7 +39,7 @@ const AddCardForm = ({
         >
           Cancel
         </button>
-      </section>
+      </footer>
     </form>
   );
 };

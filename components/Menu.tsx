@@ -20,7 +20,7 @@ const Menu = ({
 }) => {
   return (
     <aside className='absolute right-0 top-20 pb-[26rem] pr-20 p-4 grid gap-3 shadow-md bg-white z-10'>
-      <section className='grid grid-cols-2 text-list'>
+      <article className='grid grid-cols-2 text-list'>
         <h4 className='text-base p-2 font-medium border-b-2 border-gray-100'>
           About This Board
         </h4>
@@ -30,21 +30,21 @@ const Menu = ({
         >
           x
         </button>
-      </section>
-      <section className='grid p-2 gap-2 text-sm text-card'>
+      </article>
+      <article className='grid p-2 gap-2 text-sm text-card'>
         <h5 className='font-bold '>Made by</h5>
-        <section className='grid grid-flow-col auto-cols-max gap-3 items-center'>
+        <article className='grid grid-flow-col auto-cols-max gap-3 items-center'>
           <div className='p-2 font-bold text-white ring-1 ring-gray-200 bg-gray-200 rounded-lg'>
             {boardInfo.users[0]}
           </div>
           <h5 className='font-medium'>{boardInfo.menu?.madeBy}</h5>
-        </section>
-      </section>
+        </article>
+      </article>
       <form
         className='grid p-2 gap-2 text-sm text-card'
         onSubmit={handleEditDescription}
       >
-        <section className='grid grid-cols-2 justify-self-start items-center'>
+        <article className='grid grid-cols-2 justify-self-start items-center'>
           <h5 className='font-bold'>Description</h5>
           <button
             type='button'
@@ -53,7 +53,7 @@ const Menu = ({
           >
             Edit
           </button>
-        </section>
+        </article>
         <textarea
           disabled={!editDescription}
           value={description}
@@ -63,7 +63,7 @@ const Menu = ({
           }`}
         />
         {editDescription && (
-          <section className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
+          <footer className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
             <button
               type='submit'
               className='px-3 py-1 text-white justify-self-start bg-save rounded-lg'
@@ -77,7 +77,7 @@ const Menu = ({
             >
               Cancel
             </button>
-          </section>
+          </footer>
         )}
       </form>
     </aside>

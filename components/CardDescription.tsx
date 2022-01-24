@@ -36,7 +36,7 @@ const CardDescription = ({
         )
       }
     >
-      <section className='grid grid-cols-2 justify-self-start items-center'>
+      <article className='grid grid-cols-2 justify-self-start items-center'>
         <h4 className='text-base font-medium'>Description</h4>
         <button
           type='button'
@@ -48,7 +48,7 @@ const CardDescription = ({
         >
           Edit
         </button>
-      </section>
+      </article>
       <textarea
         disabled={!editDescription}
         placeholder={card.description}
@@ -59,7 +59,7 @@ const CardDescription = ({
         }`}
       />
       {editDescription && (
-        <section className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
+        <footer className='grid grid-cols-2 gap-4 text-xs justify-self-start'>
           <button
             type='submit'
             className='px-3 py-1 text-white justify-self-start bg-save rounded-lg'
@@ -73,7 +73,7 @@ const CardDescription = ({
           >
             Cancel
           </button>
-        </section>
+        </footer>
       )}
     </form>
   );
